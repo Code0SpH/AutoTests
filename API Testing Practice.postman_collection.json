@@ -4,7 +4,7 @@
 		"name": "API Testing Practice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29213041",
-		"_collection_link": "https://test66-7531.postman.co/workspace/Postman-4-Beginners-~ae385fd4-df22-46c5-9f0f-84f87c510c11/collection/29213041-f53a3952-8ea8-453e-acfe-a65fe55c8203?action=share&source=collection_link&creator=29213041"
+		"_collection_link": "https://test66-7531.postman.co/workspace/ae385fd4-df22-46c5-9f0f-84f87c510c11/collection/29213041-f53a3952-8ea8-453e-acfe-a65fe55c8203?action=share&source=collection_link&creator=29213041"
 	},
 	"item": [
 		{
@@ -262,6 +262,309 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Global City Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/get?city={{city}}",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "{{city}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Environment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/get?city={{city}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "{{city}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Pre-Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Генерация случайного email\r",
+							"const randomString = Math.random().toString(36).substring(2, 10);\r",
+							"pm.environment.set(\"randomEmail\", `test_${randomString}@example.com`);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{randomEmail}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://httpbin.org/post",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Auth works\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.authenticated).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/basic-auth/user/pass",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"basic-auth",
+						"user",
+						"pass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bearer Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Token is present in headers\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.headers.Authorization).to.eql(\"Bearer test_token_123\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "test_token_123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/anything",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"anything"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mock",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "MockTest",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://229454b2-00e6-4eb1-a583-3e3f6b7a7b9d.mock.pstmn.io/users/1",
+							"protocol": "https",
+							"host": [
+								"229454b2-00e6-4eb1-a583-3e3f6b7a7b9d",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 12 Sep 2025 19:58:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=8a29e33de14ed3f9"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=8472581d0478465e"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "x-ratelimit-limit",
+							"value": "120"
+						},
+						{
+							"key": "x-ratelimit-remaining",
+							"value": "119"
+						},
+						{
+							"key": "x-ratelimit-reset",
+							"value": "1757707179"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"10f-iQ/6cTHOHhQG6g/jbUGqClHk7Zg\""
+						},
+						{
+							"key": "vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "119"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__cf_bm=BJ7Gtv8jsJ5sV272soayyUcWiMXt_ifoDMPDc6BxTI0-1757707119-1.0.1.1-z_CWDkVnI18HwxgtK5GSwyi.scc0JT80YkCpz5BJVyK1cZuHxTXiFFLa1j7ZvOImW3VwnZ.0k_WwYasik4h9bbildkvoAemx57W9gruxmM8; path=/; expires=Fri, 12-Sep-25 20:28:39 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "97e1fb14a9c01992-FRA"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"error\": {\n        \"name\": \"Test\",\n        \"message\": \"To mock this request add an example response for the mock server to return. Learn more here: https://learning.postman.com/docs/sending-requests/response-data/examples/#add-an-example\",\n        \"header\": \"Test\"\n    }\n}"
+				}
+			]
 		}
 	]
 }
