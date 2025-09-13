@@ -7,8 +7,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Newman
         run: npm install -g newman
+      - name: Install HTML Reporter
+        run: npm install newman-reporter-html
       - name: Run tests
-        run: newman run APITestingPractice.postman_collection.json --reporters cli,html
+        run: newman run APITestingPractice.postman_collection.json -e dev_environment.json --reporters cli,html
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
