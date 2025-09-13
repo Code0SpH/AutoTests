@@ -5,21 +5,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
       - name: Install Newman
         run: npm install -g newman
-      - name: Install HTML Reporter
-        run: npm install newman-reporter-html
-      - name: Check if report exists
-        run: |
-          if [ ! -f report.html ]; then
-          echo "Report file not found!"
-          exit 1
-          fi
+      - name: Install HTML reporter
+        run: npm install -g newman-reporter-html
+        
       - name: Run tests
-        run: newman run APITestingPractice.postman_collection.json -e dev_environment.json --reporters cli,html --reporter-html-export report.html 
+        run: |
+          newman run APITestingPractice.postman_collection.json -e dev_environment.json --reporters cli,html --reporter-html-export report.html --verbose
+          ls -la
+          cat report.html
+          
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
           name: postman-report
           path: report.html
-      
+          if-no-files-found: error
