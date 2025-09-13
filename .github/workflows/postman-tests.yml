@@ -16,7 +16,7 @@ jobs:
           exit 1
           fi
       - name: Run tests
-        run: newman run APITestingPractice.postman_collection.json --reporters cli,html --reporter-html-export report.html
+        run: newman run APITestingPractice.postman_collection.json -e dev_environment.json --reporters cli,html --reporter-html-export report.html 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
