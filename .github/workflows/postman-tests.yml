@@ -8,7 +8,7 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
       - name: Run tests
-        run: newman run newman-tests/collection.json --reporters cli,html
+        run: newman run APITestingPractice.postman_collection.json --reporters cli,html
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
