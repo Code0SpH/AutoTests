@@ -4,7 +4,7 @@
 		"name": "API Testing Practice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29213041",
-		"_collection_link": "https://test66-7531.postman.co/workspace/ae385fd4-df22-46c5-9f0f-84f87c510c11/collection/29213041-f53a3952-8ea8-453e-acfe-a65fe55c8203?action=share&source=collection_link&creator=29213041"
+		"_collection_link": "https://test66-7531.postman.co/workspace/Postman-4-Beginners-~ae385fd4-df22-46c5-9f0f-84f87c510c11/collection/29213041-f53a3952-8ea8-453e-acfe-a65fe55c8203?action=share&source=collection_link&creator=29213041"
 	},
 	"item": [
 		{
@@ -455,7 +455,21 @@
 			"name": "Mock",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://229454b2-00e6-4eb1-a583-3e3f6b7a7b9d.mock.pstmn.io/users/1",
+					"protocol": "https",
+					"host": [
+						"229454b2-00e6-4eb1-a583-3e3f6b7a7b9d",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
 			},
 			"response": [
 				{
