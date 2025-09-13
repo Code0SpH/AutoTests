@@ -9,10 +9,17 @@ jobs:
         run: npm install -g newman
       - name: Install HTML Reporter
         run: npm install newman-reporter-html
+      - name: Check if report exists
+        run: |
+          if [ ! -f report.html ]; then
+          echo "Report file not found!"
+          exit 1
+          fi
       - name: Run tests
-        run: newman run APITestingPractice.postman_collection.json -e dev_environment.json --reporters cli,html
+        run: newman run APITestingPractice.postman_collection.json --reporters cli,html --reporter-html-export report.html
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
           name: postman-report
           path: report.html
+      
