@@ -9,3 +9,8 @@ Postman API AutoTest
   7. Pre-request Scripts  
   8. Аутентификация (Basic Auth, JWT)  
   9. Мокирование через Mock Servers 
+  10. Установлен Node.js и Newman
+  11. Настроена автоматизация тестов через Newman в терминале
+  12. Настроен GitHub Actions для автоматического запуска тестов при каждом коммите
+  13. Реализована загрузка HTML-отчета в GitHub Actions artifacts
+  14. Решены проблемы с пустым HTML-отчетом
