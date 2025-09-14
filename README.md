@@ -14,3 +14,14 @@ Postman API AutoTest
   12. Настроен GitHub Actions для автоматического запуска тестов при каждом коммите
   13. Реализована загрузка HTML-отчета в GitHub Actions artifacts
   14. Решены проблемы с пустым HTML-отчетом
+ 
+DevOps CI/СD
+- [x] Установлен Docker Desktop
+- [x] Установлен Minikube
+- [x] Запущен Minikube с драйвером Docker
+- [x] Создан деплоймент Nginx в Kubernetes
+- [x] Создан сервис для доступа к Nginx
+- [x] Создан манифест для деплоймента
+- [x] Установлен Ingress Controller
+- [x] Настроен Ingress для доступа через доменное имя
+- [x] Настроено TLS-шифрование для Ingress
