@@ -26,3 +26,9 @@ DevOps CI/СD
 - [x] Установлен Ingress Controller
 - [x] Настроен Ingress для доступа через доменное имя
 - [x] Настроено TLS-шифрование для Ingress
+- [x] Работа с ConfigMaps и Secrets
+- [x] Создан Helm-чарт для Nginx
+- [x] Установлен Prometheus и Grafana
+- [x] Настроен мониторинг Nginx в Grafana
+- [x] Интеграция тестов в CI/CD пайплайн
+- [x] Настроено автоматическое масштабирование (HPA)
